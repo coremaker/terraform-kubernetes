@@ -39,6 +39,9 @@ variable "fluxv2_gcr_service_key" {
   default = ""
 }
 
+variable "fluxv2_private_key_pem" {}
+variable "fluxv2_public_key_pem" {}
+
 variable "fluxv2_chart" {
     type = string
     default = "https://github.com/coremaker/helm-chart-fluxv2/releases/download/v0.0.9/fluxv2-0.0.9.tgz"

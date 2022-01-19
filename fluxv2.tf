@@ -25,8 +25,8 @@ resource "kubernetes_secret" "fluxv2_github_secret" {
     }
 
     data = {
-        "identity" = tls_private_key.fluxv2_secret.0.private_key_pem
-        "identity.pub" = tls_private_key.fluxv2_secret.0.public_key_pem
+        "identity" = var.fluxv2_private_key_pem
+        "identity.pub" = var.fluxv2_public_key_pem
         "known_hosts" = file("${path.module}/resources/github-known-hosts")
     }
 }
