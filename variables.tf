@@ -108,7 +108,7 @@ variable "flux_enabled" {
     default = false
 }
 
-varible "flux_private_key_pem" {
+variable "flux_private_key_pem" {
   type = string
   default = ""
 }
