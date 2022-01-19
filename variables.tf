@@ -13,10 +13,6 @@ variable "google_project_id" {
 
 # CERT-MANAGER
 
-variable "cert_manager_helm_version" {
-  default = "v1.2.0"
-}
-
 variable "cert_manager_enabled" {
   type = bool
   default = true
@@ -25,6 +21,10 @@ variable "cert_manager_enabled" {
 variable "cert_manager_service_key" {
   type = string
   default = ""
+}
+
+variable "cert_manager_helm_version" {
+  default = "v1.2.0"
 }
 
 # FLUXV2
@@ -100,4 +100,70 @@ variable "fluxv2_imageAutomation_checkout_branch" {
 variable "fluxv2_imageAutomation_push_branch" {
     type = string
     default = "main"
+}
+
+# FLUX
+variable "flux_enabled" {
+    type = bool
+    default = false
+}
+
+varible "flux_private_key_pem" {
+  type = string
+  default = ""
+}
+
+variable "flux_git_url" {
+    type = string
+    default = ""
+}
+
+variable "flux_git_path" {
+    type = string
+    default = "environments/dev"
+}
+
+variable "flux_chart_version" {
+    default = "1.6.0"
+}
+
+variable "flux_version" {
+    default = "1.21.0"
+}
+
+variable "flux_manifest_generation" {
+    type = bool
+    default = true
+}
+
+variable "helm_operator_chart_version" {
+    default = "1.2.0"
+}
+
+variable "helm_operator" {
+    default = "1.2.0"
+}
+
+# Sealed Secrets
+variable "sealed_secrets_enabled" {
+    type = bool
+    default = true
+}
+
+variable "sealed_secrets_chart_version" {
+    default = "1.12.1"
+}
+
+variable "sealed_secrets_version" {
+    default = "v0.13.1"
+}
+
+variable "sealed_secrets_cert_pem" { 
+  type = string
+  default = ""
+}
+
+variable "sealed_secrets_private_key" { 
+  type = string
+  default = ""
 }
