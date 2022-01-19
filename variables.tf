@@ -6,6 +6,11 @@ variable "k8s_namespaces" {
   }))
 }
 
+variable "google_project_id" {
+  type = string
+  default = ""
+}
+
 # CERT-MANAGER
 
 variable "cert_manager_helm_version" {
