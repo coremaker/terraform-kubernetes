@@ -4,7 +4,6 @@ resource "kubernetes_namespace" "sealed_secrets" {
   metadata {
     name = "sealed-secrets"
   }
-  depends_on = [google_container_cluster.kube, google_container_node_pool.kube_nodes]
 }
 
 resource "kubernetes_secret" "sealed_secrets_tls" {

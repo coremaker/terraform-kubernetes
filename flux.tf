@@ -4,7 +4,6 @@ resource "kubernetes_namespace" "flux" {
   metadata {
     name = "flux"
   }
-  depends_on = [google_container_cluster.kube, google_container_node_pool.kube_nodes]
 }
 
 resource "kubernetes_secret" "flux_secret" {
