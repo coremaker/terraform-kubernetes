@@ -6,13 +6,7 @@ variable "k8s_namespaces" {
   }))
 }
 
-variable "google_project_id" {
-  type = string
-  default = ""
-}
-
 # CERT-MANAGER
-
 variable "cert_manager_enabled" {
   type = bool
   default = true
@@ -27,8 +21,12 @@ variable "cert_manager_helm_version" {
   default = "v1.2.0"
 }
 
-# FLUXV2
+variable "cert_manager_clouddns_projectId" {
+  type = string
+  default = ""
+}
 
+# FLUXV2
 variable "fluxv2_enabled" {
     type = bool
     default = false
