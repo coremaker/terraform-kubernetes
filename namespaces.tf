@@ -1,6 +1,6 @@
 locals {
   k8s_namespaces = {
-    for namespace in var.k8s_namespaces:
+    for namespace in var.k8s_namespaces :
     namespace.name => namespace
   }
 }

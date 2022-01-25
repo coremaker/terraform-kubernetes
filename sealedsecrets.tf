@@ -1,5 +1,5 @@
 resource "kubernetes_namespace" "sealed_secrets" {
-  count      = var.sealed_secrets_enabled ? 1 : 0
+  count = var.sealed_secrets_enabled ? 1 : 0
 
   metadata {
     name = "sealed-secrets"
@@ -7,9 +7,9 @@ resource "kubernetes_namespace" "sealed_secrets" {
 }
 
 resource "kubernetes_secret" "sealed_secrets_tls" {
-  count      = var.sealed_secrets_enabled ? 1 : 0
-  
-  type  = "kubernetes.io/tls"
+  count = var.sealed_secrets_enabled ? 1 : 0
+
+  type = "kubernetes.io/tls"
 
   metadata {
     name      = "sealed-secrets-tls"
@@ -26,47 +26,47 @@ resource "kubernetes_secret" "sealed_secrets_tls" {
 }
 
 resource "helm_release" "sealed_secrets" {
-  count      = var.sealed_secrets_enabled ? 1 : 0
+  count = var.sealed_secrets_enabled ? 1 : 0
 
-  name       = "sealed-secrets"
-  version    = var.sealed_secrets_chart_version
-  namespace  = kubernetes_namespace.sealed_secrets.0.metadata.0.name
+  name      = "sealed-secrets"
+  version   = var.sealed_secrets_chart_version
+  namespace = kubernetes_namespace.sealed_secrets.0.metadata.0.name
 
   chart      = "sealed-secrets"
   repository = "https://charts.helm.sh/stable"
 
   set {
-    name = "image.repository"
+    name  = "image.repository"
     value = "quay.io/bitnami/sealed-secrets-controller"
   }
 
   set {
-    name = "image.tag"
+    name  = "image.tag"
     value = var.sealed_secrets_version
   }
 
   set {
-    name = "serviceAccount.create"
+    name  = "serviceAccount.create"
     value = "true"
   }
 
   set {
-    name = "serviceAccount.name"
+    name  = "serviceAccount.name"
     value = "sealed-secrets"
   }
 
   set {
-    name = "secretName"
+    name  = "secretName"
     value = kubernetes_secret.sealed_secrets_tls.0.metadata.0.name
   }
 
   set {
-    name = "crd.create"
+    name  = "crd.create"
     value = "true"
   }
 
   set {
-    name = "crd.keep"
+    name  = "crd.keep"
     value = "true"
   }
 }

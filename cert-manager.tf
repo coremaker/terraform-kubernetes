@@ -1,5 +1,5 @@
 resource "kubernetes_namespace" "cert_manager" {
-  count      = var.cert_manager_enabled ? 1 : 0
+  count = var.cert_manager_enabled ? 1 : 0
 
   metadata {
     name = "cert-manager"
@@ -7,10 +7,10 @@ resource "kubernetes_namespace" "cert_manager" {
 }
 
 resource "kubernetes_secret" "cert_manager_service_key" {
-  count      = var.cert_manager_enabled ? 1 : 0
+  count = var.cert_manager_enabled ? 1 : 0
 
   metadata {
-    name = "cert-manager-secrets"
+    name      = "cert-manager-secrets"
     namespace = kubernetes_namespace.cert_manager.0.metadata.0.name
   }
 
@@ -22,18 +22,18 @@ resource "kubernetes_secret" "cert_manager_service_key" {
 }
 
 resource "helm_release" "cert_manager" {
-  count      = var.cert_manager_enabled ? 1 : 0
+  count = var.cert_manager_enabled ? 1 : 0
 
   chart      = "cert-manager"
   repository = "https://charts.jetstack.io"
   name       = "cert-manager"
-  
-  version    = var.cert_manager_helm_version
-  namespace  = kubernetes_namespace.cert_manager.0.metadata.0.name
-  timeout    = "60"
+
+  version   = var.cert_manager_helm_version
+  namespace = kubernetes_namespace.cert_manager.0.metadata.0.name
+  timeout   = "60"
 
   set {
-    name = "installCRDs"
+    name  = "installCRDs"
     value = "true"
   }
 
@@ -41,14 +41,14 @@ resource "helm_release" "cert_manager" {
 }
 
 resource "helm_release" "cert_manager_lentsencrypt" {
-  count      = var.cert_manager_enabled ? 1 : 0
+  count = var.cert_manager_enabled ? 1 : 0
 
-  name       = "cert-managers-letsencrypt"
-  chart      = format("%s/helm-charts/cert-manager-letsencrypt", path.module)
+  name      = "cert-managers-letsencrypt"
+  chart     = format("%s/helm-charts/cert-manager-letsencrypt", path.module)
   namespace = kubernetes_namespace.cert_manager.0.metadata.0.name
 
   set {
-    name = "clouddns.projectId"
+    name  = "clouddns.projectId"
     value = var.cert_manager_clouddns_projectId
   }
 

@@ -1,5 +1,5 @@
 resource "kubernetes_namespace" "flux" {
-  count      = var.flux_enabled ? 1 : 0
+  count = var.flux_enabled ? 1 : 0
 
   metadata {
     name = "flux"
@@ -7,8 +7,8 @@ resource "kubernetes_namespace" "flux" {
 }
 
 resource "kubernetes_secret" "flux_secret" {
-  count      = var.flux_enabled ? 1 : 0
-  
+  count = var.flux_enabled ? 1 : 0
+
   metadata {
     name      = "flux-secret"
     namespace = kubernetes_namespace.flux.0.metadata.0.name
@@ -20,11 +20,11 @@ resource "kubernetes_secret" "flux_secret" {
 }
 
 resource "helm_release" "helm_operator" {
-  count      = var.flux_enabled ? 1 : 0
+  count = var.flux_enabled ? 1 : 0
 
-  name       = "helm-operator"
-  version    = var.helm_operator_chart_version
-  namespace  = kubernetes_namespace.flux.0.metadata.0.name
+  name      = "helm-operator"
+  version   = var.helm_operator_chart_version
+  namespace = kubernetes_namespace.flux.0.metadata.0.name
 
   chart      = "helm-operator"
   repository = "https://charts.fluxcd.io"
@@ -35,22 +35,22 @@ resource "helm_release" "helm_operator" {
   }
 
   set {
-    name = "image.tag"
+    name  = "image.tag"
     value = var.helm_operator
   }
 
   set {
-    name = "helm.versions"
+    name  = "helm.versions"
     value = "v3"
   }
 }
 
 resource "helm_release" "flux" {
-  count      = var.flux_enabled ? 1 : 0
+  count = var.flux_enabled ? 1 : 0
 
-  name       = "flux"
-  version    = var.flux_chart_version
-  namespace  = kubernetes_namespace.flux.0.metadata.0.name
+  name      = "flux"
+  version   = var.flux_chart_version
+  namespace = kubernetes_namespace.flux.0.metadata.0.name
 
   chart      = "flux"
   repository = "https://charts.fluxcd.io"
@@ -61,7 +61,7 @@ resource "helm_release" "flux" {
   }
 
   set {
-    name = "git.path"
+    name  = "git.path"
     value = var.flux_git_path
   }
 
@@ -76,12 +76,12 @@ resource "helm_release" "flux" {
   }
 
   set {
-    name = "image.tag"
+    name  = "image.tag"
     value = var.flux_version
   }
 
   set {
-    name = "manifestGeneration"
+    name  = "manifestGeneration"
     value = var.flux_manifest_generation
   }
 }
