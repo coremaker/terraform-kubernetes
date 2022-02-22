@@ -40,9 +40,11 @@ variable "fluxv2_gcr_service_key" {
 
 variable "fluxv2_private_key_pem" {
   type = any
+  default = ""
 }
 variable "fluxv2_public_key_pem" {
   type = any
+  default = ""
 }
 
 variable "fluxv2_chart" {
