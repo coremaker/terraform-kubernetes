@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt
@@ -11,8 +11,8 @@ spec:
       name: letsencrypt
     solvers:
     - dns01:
-        clouddns:
+        cloudDNS:
+          project: {{ .Values.clouddns.projectId }}
           serviceAccountSecretRef:
             name: cert-manager-secrets
             key: cert-manager-service.private-key.json
-          project: {{ .Values.clouddns.projectId }}
