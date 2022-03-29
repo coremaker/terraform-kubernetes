@@ -19,7 +19,7 @@ variable "cert_manager_service_key" {
 
 variable "cert_manager_helm_version" {
   type    = string
-  default = "v1.2.0"
+  default = "v1.7.2"
 }
 
 variable "cert_manager_clouddns_projectId" {
