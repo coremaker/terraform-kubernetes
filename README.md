@@ -8,7 +8,7 @@ Works best if used with our [`terraform-google-module`]!
 ## Providers
 
 | Name |
-|------|---------|
+|------|
 | <a name="provider_helm"></a> [helm](#provider\_helm) |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) |
 
