@@ -192,7 +192,7 @@ variable "sealed_secrets_enabled" {
 
 variable "sealed_secrets_chart_version" {
   type    = string
-  default = "2.1.8"
+  default = "1.0.8"
   description = "Helm chart version to deploy."
 }
 
