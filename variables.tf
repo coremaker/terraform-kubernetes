@@ -198,7 +198,7 @@ variable "sealed_secrets_chart_version" {
 
 variable "sealed_secrets_version" {
   type    = string
-  default = "v0.18.0"
+  default = "0.18.0"
   description = "Application version do deploy."
 }
 
