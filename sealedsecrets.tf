@@ -33,11 +33,11 @@ resource "helm_release" "sealed_secrets" {
   namespace = kubernetes_namespace.sealed_secrets.0.metadata.0.name
 
   chart      = "sealed-secrets"
-  repository = "https://charts.helm.sh/stable"
+  repository = "https://charts.bitnami.com/bitnami"
 
   set {
     name  = "image.repository"
-    value = "bitnami/sealed-secrets-controller"
+    value = "bitnami/sealed-secrets"
   }
 
   set {
