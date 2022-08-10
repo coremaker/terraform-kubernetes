@@ -12,12 +12,6 @@ resource "kubernetes_namespace" "k8s_namespace" {
     name = each.key
 
   labels = each.value.labels
-    // labels = {
-    //   "${each.value["label_name"]}" = each.value["label_value"]
-    // }
-
-    // labels = {
-    //   mylabel = "label-value"
-    // }
+  annotations = each.value.annotations
   }
 }

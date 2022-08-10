@@ -8,6 +8,7 @@ variable "k8s_namespaces" {
     //     label_value = string
     // }))
     labels = map(string)
+    annotations = map(string)
   }))
   description = "Namespaces to be created."
 }
