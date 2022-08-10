@@ -10,5 +10,13 @@ resource "kubernetes_namespace" "k8s_namespace" {
 
   metadata {
     name = each.key
+
+    labels = {
+      "${each.value["label_name"]}" = each.value["label_value"]
+    }
+
+    // labels = {
+    //   mylabel = "label-value"
+    // }
   }
 }
