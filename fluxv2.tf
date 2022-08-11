@@ -55,12 +55,12 @@ resource "helm_release" "fluxv2" {
 
   set {
     name  = "imageAutomation.checkoutBranch"
-    value = var.fluxv2_imageAutomation_checkout_branch
+    value = var.fluxv2_image_automation_checkout_branch
   }
 
   set {
     name  = "imageAutomation.pushBranch"
-    value = var.fluxv2_imageAutomation_push_branch
+    value = var.fluxv2_image_automation_push_branch
   }
 
   set {
@@ -75,7 +75,7 @@ resource "helm_release" "fluxv2" {
 
   set {
     name  = "gitRepository.interval"
-    value = var.fluxv2_gitRepository_interval
+    value = var.fluxv2_git_repository_interval
   }
 
   set {
@@ -90,12 +90,12 @@ resource "helm_release" "fluxv2" {
 
   set {
     name  = "imageAutomation.interval"
-    value = var.fluxv2_imageAutomation_interval
+    value = var.fluxv2_image_automation_interval
   }
 
   set {
     name  = "imageAutomation.suspend"
-    value = var.fluxv2_imageAutomation_suspend
+    value = var.fluxv2_image_automation_suspend
   }
 
   depends_on = [helm_release.fluxv2_controllers, kubernetes_secret.fluxv2_github_secret]

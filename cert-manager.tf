@@ -49,7 +49,7 @@ resource "helm_release" "cert_manager_lentsencrypt" {
 
   set {
     name  = "clouddns.projectId"
-    value = var.cert_manager_clouddns_projectId
+    value = var.cert_manager_clouddns_project_id
   }
 
   depends_on = [kubernetes_namespace.cert_manager, helm_release.cert_manager]
