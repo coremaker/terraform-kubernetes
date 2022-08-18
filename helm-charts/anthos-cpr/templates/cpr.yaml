@@ -3,9 +3,9 @@ kind: ControlPlaneRevision
 metadata:
   name: {{ .Values.name }}
   annotations:
-    mesh.cloud.google.com/vpcsc: {{ .Values.vpcsc.enabled }}
+    mesh.cloud.google.com/vpcsc: "{{ .Values.vpcsc.enabled }}"
   labels:
-    mesh.cloud.google.com/managed-cni-enabled: {{ .Values.cni.enabled }}
+    mesh.cloud.google.com/managed-cni-enabled: "{{ .Values.cni.enabled }}"
     app.kubernetes.io/created-by: terraform
 spec:
   type: {{ .Values.type }}
