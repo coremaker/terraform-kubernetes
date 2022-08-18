@@ -1,0 +1,7 @@
+name: anthos-control-plane-revision
+version: v0.0.1
+description: A Helm chart for the Anthos Control Plane Revision.
+appVersion: v1.4.3
+maintainers:
+  - name: coremaker
+    email: it-infra@coremaker.io

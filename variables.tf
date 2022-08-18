@@ -56,6 +56,7 @@ variable "fluxv2_private_key_pem" {
   default     = ""
   description = "Private key to be used for github integration."
 }
+
 variable "fluxv2_public_key_pem" {
   type        = any
   default     = ""
@@ -218,4 +219,106 @@ variable "sealed_secrets_private_key" {
   type        = string
   default     = ""
   description = "Private key used for the encryption of secrets."
+}
+
+# Anthos
+
+variable "anthos_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable/Disable Anthos resources."
+}
+
+variable "anthos_namespace" {
+  type = string
+  default = "istio-system"
+  description = "Namespace where to create the Anthos resources."
+}
+
+variable "anthos_cpr_name" {
+  type = string
+  default = "asm-managed-stable"
+  description = "Name to be used when creating the anthos control plane revision"
+}
+
+variable "anthos_vpcsc_enabled" {
+  type = bool
+  default = false
+  description = "Enable/Disable VPCSC for Anthos"
+}
+
+variable "anthos_cni_enabled" {
+  type = bool
+  default = true
+  description = "Enable/Disable CNI for Anthos"
+}
+
+variable "anthos_service_type" {
+  type = string
+  default = "managed_service"
+  description = "Anthos service type"
+}
+
+variable "anthos_channel" {
+  type = string
+  default = "stable"
+  description = "Anthos channel to be used when creating the CPR"
+}
+
+# Istio
+
+variable "ingressgateway_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable/Disable Egress Gateway resource."
+}
+
+variable "egressgateway_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable/Disable Egress Gateway resource."
+}
+
+variable "istio_gateways_namespace" {
+  type        = string
+  default     = "istio-ingress"
+  description = "Namespace where to create the istio gateways." 
+}
+
+variable "ingressgateway_name" {
+  type        = string
+  default     = "istio-ingressgateway"
+  description = "Name to be used when creating the istio ingress gateway."
+}
+
+variable "ingressgateway_version" {
+  type        = string
+  default     = "1.14.3"
+  description = "Istio ingress gateway chart version."
+}
+
+variable "ingressgateway_values" {
+  type = list(object({
+    name          = any
+    value         = any
+  }))
+}
+
+variable "egressgateway_name" {
+  type        = string
+  default     = "istio-egressgateway"
+  description = "Name to be used when creating the istio egress gateway."
+}
+
+variable "egressgateway_version" {
+  type        = string
+  default     = "1.14.3"
+  description = "Istio egress gateway chart version."
+}
+
+variable "egressgateway_values" {
+  type = list(object({
+    name          = any
+    value         = any
+  }))
 }
