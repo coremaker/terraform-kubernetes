@@ -54,8 +54,8 @@ resource "helm_release" "istio_ingressgateway" {
   dynamic "set" {
     for_each = var.ingressgateway_values
     content {
-      name = each.value.name
-      value = each.value.value
+      name = set.value.name
+      value = set.value.value
     }
   }
 }
@@ -73,8 +73,8 @@ resource "helm_release" "istio_egressgateway" {
   dynamic "set" {
     for_each = var.egressgateway_values
     content {
-      name = each.value.name
-      value = each.value.value
+      name = set.value.name
+      value = set.value.value
     }
   }
 }
