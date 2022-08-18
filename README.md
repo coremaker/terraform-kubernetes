@@ -1,16 +1,25 @@
 [![Maintained by coremaker.io](https://img.shields.io/badge/maintained%20by-coremaker.io-green)](https://coremaker.io/)
-[![Coremaker Docs](https://img.shields.io/badge/coremaker-docs-green)](https://coremaker.io/)
+
 # Terraform Kubernetes Module
 
 This repository contains a [`terraform`] module for running the main operators inside our [`kubernetes`] clusters.
 Works best if used with our [`terraform-google-module`]!
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
-| Name |
-|------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) |
+| Name | Version |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.6.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.12.1 |
+
+## Modules
+
+No modules.
 
 ## Resources
 
@@ -39,7 +48,7 @@ Works best if used with our [`terraform-google-module`]!
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cert_manager_clouddns_projectId"></a> [cert\_manager\_clouddns\_projectId](#input\_cert\_manager\_clouddns\_projectId) | Project id to be used by the cluster issuer. | `string` | `""` | no |
+| <a name="input_cert_manager_clouddns_project_id"></a> [cert\_manager\_clouddns\_project\_id](#input\_cert\_manager\_clouddns\_project\_id) | Project id to be used by the cluster issuer. | `string` | `""` | no |
 | <a name="input_cert_manager_enabled"></a> [cert\_manager\_enabled](#input\_cert\_manager\_enabled) | Enable/Disable cert-manager operator. | `bool` | `true` | no |
 | <a name="input_cert_manager_helm_version"></a> [cert\_manager\_helm\_version](#input\_cert\_manager\_helm\_version) | The helm-chart version to be used. | `string` | `"v1.7.2"` | no |
 | <a name="input_cert_manager_service_key"></a> [cert\_manager\_service\_key](#input\_cert\_manager\_service\_key) | Service account key with the right permissions for DNS to be used by cert-manager. | `string` | `""` | no |
@@ -53,14 +62,14 @@ Works best if used with our [`terraform-google-module`]!
 | <a name="input_fluxv2_chart"></a> [fluxv2\_chart](#input\_fluxv2\_chart) | Helm chart to be used to deploy fluxv2. | `string` | `"https://github.com/coremaker/helm-chart-fluxv2/releases/download/v0.0.9/fluxv2-0.0.9.tgz"` | no |
 | <a name="input_fluxv2_enabled"></a> [fluxv2\_enabled](#input\_fluxv2\_enabled) | Enable/Disable fluxv2 operator. | `bool` | `false` | no |
 | <a name="input_fluxv2_gcr_service_key"></a> [fluxv2\_gcr\_service\_key](#input\_fluxv2\_gcr\_service\_key) | Service account key with the right permissions for GCR to be used by fluxv2. | `string` | `""` | no |
-| <a name="input_fluxv2_gitRepository_interval"></a> [fluxv2\_gitRepository\_interval](#input\_fluxv2\_gitRepository\_interval) | Fluxv2 gitrepository resource sync interval. | `string` | `"5m"` | no |
 | <a name="input_fluxv2_git_branch"></a> [fluxv2\_git\_branch](#input\_fluxv2\_git\_branch) | Github branch to be used. | `string` | `"main"` | no |
 | <a name="input_fluxv2_git_path"></a> [fluxv2\_git\_path](#input\_fluxv2\_git\_path) | Github repository path to be used. | `string` | `""` | no |
+| <a name="input_fluxv2_git_repository_interval"></a> [fluxv2\_git\_repository\_interval](#input\_fluxv2\_git\_repository\_interval) | Fluxv2 gitrepository resource sync interval. | `string` | `"5m"` | no |
 | <a name="input_fluxv2_git_url"></a> [fluxv2\_git\_url](#input\_fluxv2\_git\_url) | Github SSH url to the repository holding kubernetes manifests. | `string` | `""` | no |
-| <a name="input_fluxv2_imageAutomation_checkout_branch"></a> [fluxv2\_imageAutomation\_checkout\_branch](#input\_fluxv2\_imageAutomation\_checkout\_branch) | Branch holding the versions to be used for deployments. | `string` | `"main"` | no |
-| <a name="input_fluxv2_imageAutomation_interval"></a> [fluxv2\_imageAutomation\_interval](#input\_fluxv2\_imageAutomation\_interval) | Fluxv2 image automation resource sync interval. | `string` | `"5m"` | no |
-| <a name="input_fluxv2_imageAutomation_push_branch"></a> [fluxv2\_imageAutomation\_push\_branch](#input\_fluxv2\_imageAutomation\_push\_branch) | Branch where to push new versions for deployments. | `string` | `"main"` | no |
-| <a name="input_fluxv2_imageAutomation_suspend"></a> [fluxv2\_imageAutomation\_suspend](#input\_fluxv2\_imageAutomation\_suspend) | Suspend image automation resource. | `bool` | `false` | no |
+| <a name="input_fluxv2_image_automation_checkout_branch"></a> [fluxv2\_image\_automation\_checkout\_branch](#input\_fluxv2\_image\_automation\_checkout\_branch) | Branch holding the versions to be used for deployments. | `string` | `"main"` | no |
+| <a name="input_fluxv2_image_automation_interval"></a> [fluxv2\_image\_automation\_interval](#input\_fluxv2\_image\_automation\_interval) | Fluxv2 image automation resource sync interval. | `string` | `"5m"` | no |
+| <a name="input_fluxv2_image_automation_push_branch"></a> [fluxv2\_image\_automation\_push\_branch](#input\_fluxv2\_image\_automation\_push\_branch) | Branch where to push new versions for deployments. | `string` | `"main"` | no |
+| <a name="input_fluxv2_image_automation_suspend"></a> [fluxv2\_image\_automation\_suspend](#input\_fluxv2\_image\_automation\_suspend) | Suspend image automation resource. | `bool` | `false` | no |
 | <a name="input_fluxv2_kustomization_interval"></a> [fluxv2\_kustomization\_interval](#input\_fluxv2\_kustomization\_interval) | Fluxv2 kustomization resource sync interval. | `string` | `"5m"` | no |
 | <a name="input_fluxv2_kustomization_prune"></a> [fluxv2\_kustomization\_prune](#input\_fluxv2\_kustomization\_prune) | Enable/Disable prune for all resources. | `bool` | `true` | no |
 | <a name="input_fluxv2_private_key_pem"></a> [fluxv2\_private\_key\_pem](#input\_fluxv2\_private\_key\_pem) | Private key to be used for github integration. | `any` | `""` | no |
@@ -70,10 +79,15 @@ Works best if used with our [`terraform-google-module`]!
 | <a name="input_helm_operator_chart_version"></a> [helm\_operator\_chart\_version](#input\_helm\_operator\_chart\_version) | Helm chart version to deploy. | `string` | `"1.2.0"` | no |
 | <a name="input_k8s_namespaces"></a> [k8s\_namespaces](#input\_k8s\_namespaces) | Namespaces to be created. | <pre>list(object({<br>    name          = string<br>    has_public_ip = bool<br>    dns_records   = set(string)<br>  }))</pre> | n/a | yes |
 | <a name="input_sealed_secrets_cert_pem"></a> [sealed\_secrets\_cert\_pem](#input\_sealed\_secrets\_cert\_pem) | Self-signed cert to be used for the encryption/decryption of secrets. | `string` | `""` | no |
-| <a name="input_sealed_secrets_chart_version"></a> [sealed\_secrets\_chart\_version](#input\_sealed\_secrets\_chart\_version) | Helm chart version to deploy. | `string` | `"1.12.1"` | no |
+| <a name="input_sealed_secrets_chart_version"></a> [sealed\_secrets\_chart\_version](#input\_sealed\_secrets\_chart\_version) | Helm chart version to deploy. | `string` | `"1.0.8"` | no |
 | <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Enable/Disable sealed-secrets operator. | `bool` | `true` | no |
 | <a name="input_sealed_secrets_private_key"></a> [sealed\_secrets\_private\_key](#input\_sealed\_secrets\_private\_key) | Private key used for the encryption of secrets. | `string` | `""` | no |
-| <a name="input_sealed_secrets_version"></a> [sealed\_secrets\_version](#input\_sealed\_secrets\_version) | Application version do deploy. | `string` | `"v0.13.1"` | no |
+| <a name="input_sealed_secrets_version"></a> [sealed\_secrets\_version](#input\_sealed\_secrets\_version) | Application version do deploy. | `string` | `"0.18.0"` | no |
+
+## Outputs
+
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 # Flux - Fluxv2
 
@@ -95,8 +109,15 @@ More information about [`sealed-secrets`].
 
 # Cert-Manager
 
+Cert-manager adds certificates and certificate issuers as resource types in Kubernetes clusters, and simplifies the process of obtaining, renewing and using those certificates.
+
+It will ensure certificates are valid and up to date, and attempt to renew certificates at a configured time before expiry.
+
+More information about [`cert-manager`].
+
 [`terraform-google-module`]: https://github.com/coremaker/terraform-google-nucleus
 [`kubernetes`]: https://kubernetes.io/
 [`terraform`]: https://www.terraform.io
 [`sealed-secrets`]: https://github.com/bitnami-labs/sealed-secrets
 [`flux`]: https://docs.fluxcd.io/en/1.18.0/introduction.html
+[`cert-manager`]: https://cert-manager.io/docs/
