@@ -306,7 +306,11 @@ variable "ingressgateway_values" {
     labels = map(string)
     annotations = map(string)
   })
-  default = {}
+  default = {
+    values = []
+    labels = {}
+    annotations = {}
+  }
   description = "Values to be set on the ingress gateway resource."
 }
 
