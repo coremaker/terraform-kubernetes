@@ -242,14 +242,14 @@ variable "anthos_cpr_name" {
 }
 
 variable "anthos_vpcsc_enabled" {
-  type = bool
-  default = false
+  type = string
+  default = "false"
   description = "Enable/Disable VPCSC for Anthos"
 }
 
 variable "anthos_cni_enabled" {
-  type = bool
-  default = true
+  type = string
+  default = "true"
   description = "Enable/Disable CNI for Anthos"
 }
 
