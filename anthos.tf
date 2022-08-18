@@ -59,15 +59,15 @@ resource "helm_release" "istio_ingressgateway" {
     }
   }
 
-  set {
-    name  = "labels"
-    value = var.ingressgateway_values["labels"]
-  }
+  // set {
+  //   name  = "labels"
+  //   value = var.ingressgateway_values["labels"]
+  // }
 
-  set {
-    name  = "annotations"
-    value = var.ingressgateway_values["annotations"]
-  }
+  // set {
+  //   name  = "annotations"
+  //   value = var.ingressgateway_values["annotations"]
+  // }
 }
 
 resource "helm_release" "istio_egressgateway" {
