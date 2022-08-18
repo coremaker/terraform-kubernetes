@@ -298,14 +298,14 @@ variable "ingressgateway_version" {
 }
 
 variable "ingressgateway_values" {
-  type = list(object({
+  type = object({
     values = list(object({
       name          = any
       value         = any
     }))
     labels = map(string)
     annotations = map(string)
-  }))
+  })
   default = []
   description = "Values to be set on the ingress gateway resource."
 }
