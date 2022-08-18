@@ -52,7 +52,7 @@ resource "helm_release" "istio_ingressgateway" {
   repository = "https://istio-release.storage.googleapis.com/charts"
 
   dynamic "set" {
-    for_each = var.ingressgateway_values[values]
+    for_each = var.ingressgateway_values["values"]
     content {
       name = set.value.name
       value = set.value.value
