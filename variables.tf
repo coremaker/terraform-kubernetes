@@ -302,6 +302,11 @@ variable "ingressgateway_values" {
     name          = any
     value         = any
   }))
+  default = [{
+    name           = ""
+    value = ""
+  }]
+  description = "Values to be set on the ingress gateway resource."
 }
 
 variable "egressgateway_name" {
@@ -321,4 +326,9 @@ variable "egressgateway_values" {
     name          = any
     value         = any
   }))
+  default = [{
+    name           = ""
+    value = ""
+  }]
+  description = "Values to be set on the egress gateway resource."
 }
