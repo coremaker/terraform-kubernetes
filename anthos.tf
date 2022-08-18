@@ -10,7 +10,7 @@ resource "helm_release" "anthos_cpr" {
   count = var.anthos_enabled ? 1 : 0
 
   name      = var.anthos_cpr_name
-  chart     = format("%s/helm-charts/anthos_cpr", path.module)
+  chart     = format("%s/helm-charts/anthos-cpr", path.module)
   namespace = kubernetes_namespace.anthos.0.metadata.0.name
 
   set {
