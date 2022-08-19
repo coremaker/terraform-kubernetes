@@ -7,7 +7,7 @@ variable "k8s_namespaces" {
     //     label_name = string
     //     label_value = string
     // }))
-    labels = map(string)
+    labels      = map(string)
     annotations = map(string)
   }))
   description = "Namespaces to be created."
@@ -230,38 +230,38 @@ variable "anthos_enabled" {
 }
 
 variable "anthos_namespace" {
-  type = string
-  default = "istio-system"
+  type        = string
+  default     = "istio-system"
   description = "Namespace where to create the Anthos resources."
 }
 
 variable "anthos_cpr_name" {
-  type = string
-  default = "asm-managed-stable"
+  type        = string
+  default     = "asm-managed-stable"
   description = "Name to be used when creating the anthos control plane revision"
 }
 
 variable "anthos_vpcsc_enabled" {
-  type = string
-  default = "false"
+  type        = string
+  default     = "false"
   description = "Enable/Disable VPCSC for Anthos"
 }
 
 variable "anthos_cni_enabled" {
-  type = string
-  default = "true"
+  type        = string
+  default     = "true"
   description = "Enable/Disable CNI for Anthos"
 }
 
 variable "anthos_service_type" {
-  type = string
-  default = "managed_service"
+  type        = string
+  default     = "managed_service"
   description = "Anthos service type"
 }
 
 variable "anthos_channel" {
-  type = string
-  default = "stable"
+  type        = string
+  default     = "stable"
   description = "Anthos channel to be used when creating the CPR"
 }
 
@@ -282,7 +282,7 @@ variable "egressgateway_enabled" {
 variable "istio_gateways_namespace" {
   type        = string
   default     = "istio-ingress"
-  description = "Namespace where to create the istio gateways." 
+  description = "Namespace where to create the istio gateways."
 }
 
 variable "ingressgateway_name" {
@@ -299,11 +299,11 @@ variable "ingressgateway_version" {
 
 variable "ingressgateway_values" {
   type = list(object({
-    name          = any
-    value         = any
+    name  = any
+    value = any
   }))
   default = [{
-    name = ""
+    name  = ""
     value = ""
   }]
   description = "Values to be set on the ingress gateway resource."
@@ -323,11 +323,11 @@ variable "egressgateway_version" {
 
 variable "egressgateway_values" {
   type = list(object({
-    name          = any
-    value         = any
+    name  = any
+    value = any
   }))
   default = [{
-    name           = ""
+    name  = ""
     value = ""
   }]
   description = "Values to be set on the egress gateway resource."

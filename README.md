@@ -25,13 +25,17 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [helm_release.anthos_cpr](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.cert_manager](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.cert_manager_lentsencrypt](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.flux](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.fluxv2](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.fluxv2_controllers](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.helm_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.istio_egressgateway](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.istio_ingressgateway](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.sealed_secrets](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [kubernetes_namespace.anthos](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_namespace.cert_manager](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_namespace.flux](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_namespace.fluxv2](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
@@ -48,10 +52,21 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_anthos_channel"></a> [anthos\_channel](#input\_anthos\_channel) | Anthos channel to be used when creating the CPR | `string` | `"stable"` | no |
+| <a name="input_anthos_cni_enabled"></a> [anthos\_cni\_enabled](#input\_anthos\_cni\_enabled) | Enable/Disable CNI for Anthos | `string` | `"true"` | no |
+| <a name="input_anthos_cpr_name"></a> [anthos\_cpr\_name](#input\_anthos\_cpr\_name) | Name to be used when creating the anthos control plane revision | `string` | `"asm-managed-stable"` | no |
+| <a name="input_anthos_enabled"></a> [anthos\_enabled](#input\_anthos\_enabled) | Enable/Disable Anthos resources. | `bool` | `false` | no |
+| <a name="input_anthos_namespace"></a> [anthos\_namespace](#input\_anthos\_namespace) | Namespace where to create the Anthos resources. | `string` | `"istio-system"` | no |
+| <a name="input_anthos_service_type"></a> [anthos\_service\_type](#input\_anthos\_service\_type) | Anthos service type | `string` | `"managed_service"` | no |
+| <a name="input_anthos_vpcsc_enabled"></a> [anthos\_vpcsc\_enabled](#input\_anthos\_vpcsc\_enabled) | Enable/Disable VPCSC for Anthos | `string` | `"false"` | no |
 | <a name="input_cert_manager_clouddns_project_id"></a> [cert\_manager\_clouddns\_project\_id](#input\_cert\_manager\_clouddns\_project\_id) | Project id to be used by the cluster issuer. | `string` | `""` | no |
 | <a name="input_cert_manager_enabled"></a> [cert\_manager\_enabled](#input\_cert\_manager\_enabled) | Enable/Disable cert-manager operator. | `bool` | `true` | no |
 | <a name="input_cert_manager_helm_version"></a> [cert\_manager\_helm\_version](#input\_cert\_manager\_helm\_version) | The helm-chart version to be used. | `string` | `"v1.7.2"` | no |
 | <a name="input_cert_manager_service_key"></a> [cert\_manager\_service\_key](#input\_cert\_manager\_service\_key) | Service account key with the right permissions for DNS to be used by cert-manager. | `string` | `""` | no |
+| <a name="input_egressgateway_enabled"></a> [egressgateway\_enabled](#input\_egressgateway\_enabled) | Enable/Disable Egress Gateway resource. | `bool` | `false` | no |
+| <a name="input_egressgateway_name"></a> [egressgateway\_name](#input\_egressgateway\_name) | Name to be used when creating the istio egress gateway. | `string` | `"istio-egressgateway"` | no |
+| <a name="input_egressgateway_values"></a> [egressgateway\_values](#input\_egressgateway\_values) | Values to be set on the egress gateway resource. | <pre>list(object({<br>    name  = any<br>    value = any<br>  }))</pre> | <pre>[<br>  {<br>    "name": "",<br>    "value": ""<br>  }<br>]</pre> | no |
+| <a name="input_egressgateway_version"></a> [egressgateway\_version](#input\_egressgateway\_version) | Istio egress gateway chart version. | `string` | `"1.14.3"` | no |
 | <a name="input_flux_chart_version"></a> [flux\_chart\_version](#input\_flux\_chart\_version) | Helm chart version to deploy. | `string` | `"1.6.0"` | no |
 | <a name="input_flux_enabled"></a> [flux\_enabled](#input\_flux\_enabled) | Enable/Disable flux operator. | `bool` | `false` | no |
 | <a name="input_flux_git_path"></a> [flux\_git\_path](#input\_flux\_git\_path) | Github repository path to be used. | `string` | `"environments/dev"` | no |
@@ -77,7 +92,12 @@ No modules.
 | <a name="input_fluxv2_resources_name"></a> [fluxv2\_resources\_name](#input\_fluxv2\_resources\_name) | The name of the main fluxv2 resources. | `string` | `"k8s-repo"` | no |
 | <a name="input_helm_operator"></a> [helm\_operator](#input\_helm\_operator) | Application version do deploy. | `string` | `"1.2.0"` | no |
 | <a name="input_helm_operator_chart_version"></a> [helm\_operator\_chart\_version](#input\_helm\_operator\_chart\_version) | Helm chart version to deploy. | `string` | `"1.2.0"` | no |
-| <a name="input_k8s_namespaces"></a> [k8s\_namespaces](#input\_k8s\_namespaces) | Namespaces to be created. | <pre>list(object({<br>    name          = string<br>    has_public_ip = bool<br>    dns_records   = set(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_ingressgateway_enabled"></a> [ingressgateway\_enabled](#input\_ingressgateway\_enabled) | Enable/Disable Egress Gateway resource. | `bool` | `false` | no |
+| <a name="input_ingressgateway_name"></a> [ingressgateway\_name](#input\_ingressgateway\_name) | Name to be used when creating the istio ingress gateway. | `string` | `"istio-ingressgateway"` | no |
+| <a name="input_ingressgateway_values"></a> [ingressgateway\_values](#input\_ingressgateway\_values) | Values to be set on the ingress gateway resource. | <pre>list(object({<br>    name  = any<br>    value = any<br>  }))</pre> | <pre>[<br>  {<br>    "name": "",<br>    "value": ""<br>  }<br>]</pre> | no |
+| <a name="input_ingressgateway_version"></a> [ingressgateway\_version](#input\_ingressgateway\_version) | Istio ingress gateway chart version. | `string` | `"1.14.3"` | no |
+| <a name="input_istio_gateways_namespace"></a> [istio\_gateways\_namespace](#input\_istio\_gateways\_namespace) | Namespace where to create the istio gateways. | `string` | `"istio-ingress"` | no |
+| <a name="input_k8s_namespaces"></a> [k8s\_namespaces](#input\_k8s\_namespaces) | Namespaces to be created. | <pre>list(object({<br>    name          = string<br>    has_public_ip = bool<br>    dns_records   = set(string)<br>    // labels = list(object({<br>    //     label_name = string<br>    //     label_value = string<br>    // }))<br>    labels      = map(string)<br>    annotations = map(string)<br>  }))</pre> | n/a | yes |
 | <a name="input_sealed_secrets_cert_pem"></a> [sealed\_secrets\_cert\_pem](#input\_sealed\_secrets\_cert\_pem) | Self-signed cert to be used for the encryption/decryption of secrets. | `string` | `""` | no |
 | <a name="input_sealed_secrets_chart_version"></a> [sealed\_secrets\_chart\_version](#input\_sealed\_secrets\_chart\_version) | Helm chart version to deploy. | `string` | `"1.0.8"` | no |
 | <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Enable/Disable sealed-secrets operator. | `bool` | `true` | no |

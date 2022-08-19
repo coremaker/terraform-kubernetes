@@ -42,7 +42,7 @@ resource "helm_release" "anthos_cpr" {
 }
 
 resource "helm_release" "istio_ingressgateway" {
-    count = var.ingressgateway_enabled ? 1 : 0
+  count = var.ingressgateway_enabled ? 1 : 0
 
   name      = var.ingressgateway_name
   version   = var.ingressgateway_version
@@ -54,14 +54,14 @@ resource "helm_release" "istio_ingressgateway" {
   dynamic "set" {
     for_each = var.ingressgateway_values
     content {
-      name = set.value.name
+      name  = set.value.name
       value = set.value.value
     }
   }
 }
 
 resource "helm_release" "istio_egressgateway" {
-    count = var.egressgateway_enabled ? 1 : 0
+  count = var.egressgateway_enabled ? 1 : 0
 
   name      = var.egressgateway_name
   version   = var.egressgateway_version
@@ -73,7 +73,7 @@ resource "helm_release" "istio_egressgateway" {
   dynamic "set" {
     for_each = var.egressgateway_values
     content {
-      name = set.value.name
+      name  = set.value.name
       value = set.value.value
     }
   }
