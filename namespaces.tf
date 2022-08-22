@@ -10,5 +10,8 @@ resource "kubernetes_namespace" "k8s_namespace" {
 
   metadata {
     name = each.key
+
+    labels      = each.value.labels
+    annotations = each.value.annotations
   }
 }
