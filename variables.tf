@@ -3,12 +3,8 @@ variable "k8s_namespaces" {
     name          = string
     has_public_ip = bool
     dns_records   = set(string)
-    // labels = list(object({
-    //     label_name = string
-    //     label_value = string
-    // }))
-    labels      = map(string)
-    annotations = map(string)
+    labels        = map(string)
+    annotations   = map(string)
   }))
   description = "Namespaces to be created."
 }
