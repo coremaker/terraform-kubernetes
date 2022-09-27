@@ -65,7 +65,7 @@ No modules.
 | <a name="input_cert_manager_service_key"></a> [cert\_manager\_service\_key](#input\_cert\_manager\_service\_key) | Service account key with the right permissions for DNS to be used by cert-manager. | `string` | `""` | no |
 | <a name="input_egressgateway_enabled"></a> [egressgateway\_enabled](#input\_egressgateway\_enabled) | Enable/Disable Egress Gateway resource. | `bool` | `false` | no |
 | <a name="input_egressgateway_name"></a> [egressgateway\_name](#input\_egressgateway\_name) | Name to be used when creating the istio egress gateway. | `string` | `"istio-egressgateway"` | no |
-| <a name="input_egressgateway_values"></a> [egressgateway\_values](#input\_egressgateway\_values) | Values to be set on the egress gateway resource. | <pre>list(object({<br>    name  = any<br>    value = any<br>  }))</pre> | <pre>[<br>  {<br>    "name": "",<br>    "value": ""<br>  }<br>]</pre> | no |
+| <a name="input_egressgateway_values"></a> [egressgateway\_values](#input\_egressgateway\_values) | Values to be set on the egress gateway resource. | <pre>list(object({<br>    name  = optional(any)<br>    value = optional(any)<br>  }))</pre> | n/a | yes |
 | <a name="input_egressgateway_version"></a> [egressgateway\_version](#input\_egressgateway\_version) | Istio egress gateway chart version. | `string` | `"1.14.3"` | no |
 | <a name="input_flux_chart_version"></a> [flux\_chart\_version](#input\_flux\_chart\_version) | Helm chart version to deploy. | `string` | `"1.6.0"` | no |
 | <a name="input_flux_enabled"></a> [flux\_enabled](#input\_flux\_enabled) | Enable/Disable flux operator. | `bool` | `false` | no |
@@ -94,7 +94,7 @@ No modules.
 | <a name="input_helm_operator_chart_version"></a> [helm\_operator\_chart\_version](#input\_helm\_operator\_chart\_version) | Helm chart version to deploy. | `string` | `"1.2.0"` | no |
 | <a name="input_ingressgateway_enabled"></a> [ingressgateway\_enabled](#input\_ingressgateway\_enabled) | Enable/Disable Egress Gateway resource. | `bool` | `false` | no |
 | <a name="input_ingressgateway_name"></a> [ingressgateway\_name](#input\_ingressgateway\_name) | Name to be used when creating the istio ingress gateway. | `string` | `"istio-ingressgateway"` | no |
-| <a name="input_ingressgateway_values"></a> [ingressgateway\_values](#input\_ingressgateway\_values) | Values to be set on the ingress gateway resource. | <pre>list(object({<br>    name  = any<br>    value = any<br>  }))</pre> | <pre>[<br>  {<br>    "name": "",<br>    "value": ""<br>  }<br>]</pre> | no |
+| <a name="input_ingressgateway_values"></a> [ingressgateway\_values](#input\_ingressgateway\_values) | Values to be set on the ingress gateway resource. | <pre>list(object({<br>    name  = optional(any)<br>    value = optional(any)<br>  }))</pre> | n/a | yes |
 | <a name="input_ingressgateway_version"></a> [ingressgateway\_version](#input\_ingressgateway\_version) | Istio ingress gateway chart version. | `string` | `"1.14.3"` | no |
 | <a name="input_istio_gateways_namespace"></a> [istio\_gateways\_namespace](#input\_istio\_gateways\_namespace) | Namespace where to create the istio gateways. | `string` | `"istio-ingress"` | no |
 | <a name="input_k8s_namespaces"></a> [k8s\_namespaces](#input\_k8s\_namespaces) | Namespaces to be created. | <pre>list(object({<br>    name        = string<br>    labels      = optional(map(string))<br>    annotations = optional(map(string))<br>  }))</pre> | n/a | yes |
