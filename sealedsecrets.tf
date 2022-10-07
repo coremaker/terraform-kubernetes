@@ -13,7 +13,7 @@ resource "kubernetes_secret" "sealed_secrets_tls" {
 
   metadata {
     name      = "sealed-secrets-tls"
-    namespace = kubernetes_namespace.sealed_secrets.0.metadata.0.name
+    namespace = kubernetes_namespace.sealed_secrets[0].metadata[0].name
     labels = {
       "sealedsecrets.bitnami.com/sealed-secrets-key" = "active"
     }
@@ -30,7 +30,7 @@ resource "helm_release" "sealed_secrets" {
 
   name      = "sealed-secrets"
   version   = var.sealed_secrets_chart_version
-  namespace = kubernetes_namespace.sealed_secrets.0.metadata.0.name
+  namespace = kubernetes_namespace.sealed_secrets[0].metadata[0].name
 
   chart      = "sealed-secrets"
   repository = "https://charts.bitnami.com/bitnami"
@@ -57,7 +57,7 @@ resource "helm_release" "sealed_secrets" {
 
   set {
     name  = "secretName"
-    value = kubernetes_secret.sealed_secrets_tls.0.metadata.0.name
+    value = kubernetes_secret.sealed_secrets_tls[0].metadata[0].name
   }
 
   set {
