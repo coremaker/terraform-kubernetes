@@ -10,7 +10,7 @@ resource "helm_release" "fluxv2_controllers" {
   count = var.fluxv2_enabled ? 1 : 0
 
   name      = "fluxv2-controllers"
-  namespace = kubernetes_namespace.fluxv2.0.metadata.0.name
+  namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   chart     = var.fluxv2_chart
 
   depends_on = [kubernetes_namespace.fluxv2]
@@ -21,7 +21,7 @@ resource "kubernetes_secret" "fluxv2_github_secret" {
 
   metadata {
     name      = "fluxv2-github-credentials"
-    namespace = kubernetes_namespace.fluxv2.0.metadata.0.name
+    namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
 
   data = {
@@ -35,7 +35,7 @@ resource "helm_release" "fluxv2" {
   count = var.fluxv2_enabled ? 1 : 0
 
   name      = "fluxv2"
-  namespace = kubernetes_namespace.fluxv2.0.metadata.0.name
+  namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   chart     = format("%s/helm-charts/fluxv2", path.module)
 
   set {
@@ -70,7 +70,7 @@ resource "helm_release" "fluxv2" {
 
   set {
     name  = "gitRepository.secretName"
-    value = kubernetes_secret.fluxv2_github_secret.0.metadata.0.name
+    value = kubernetes_secret.fluxv2_github_secret[0].metadata[0].name
   }
 
   set {
@@ -107,7 +107,7 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
 
   metadata {
     name      = "fluxv2-gcr-credentials"
-    namespace = kubernetes_namespace.fluxv2.0.metadata.0.name
+    namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
 
   data = {

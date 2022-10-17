@@ -11,7 +11,7 @@ resource "kubernetes_secret" "cert_manager_service_key" {
 
   metadata {
     name      = "cert-manager-secrets"
-    namespace = kubernetes_namespace.cert_manager.0.metadata.0.name
+    namespace = kubernetes_namespace.cert_manager[0].metadata[0].name
   }
 
   data = {
@@ -29,7 +29,7 @@ resource "helm_release" "cert_manager" {
   name       = "cert-manager"
 
   version   = var.cert_manager_helm_version
-  namespace = kubernetes_namespace.cert_manager.0.metadata.0.name
+  namespace = kubernetes_namespace.cert_manager[0].metadata[0].name
   timeout   = "60"
 
   set {
@@ -45,7 +45,7 @@ resource "helm_release" "cert_manager_lentsencrypt" {
 
   name      = "cert-managers-letsencrypt"
   chart     = format("%s/helm-charts/cert-manager-letsencrypt", path.module)
-  namespace = kubernetes_namespace.cert_manager.0.metadata.0.name
+  namespace = kubernetes_namespace.cert_manager[0].metadata[0].name
 
   set {
     name  = "clouddns.projectId"

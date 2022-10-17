@@ -11,7 +11,7 @@ resource "kubernetes_secret" "flux_secret" {
 
   metadata {
     name      = "flux-secret"
-    namespace = kubernetes_namespace.flux.0.metadata.0.name
+    namespace = kubernetes_namespace.flux[0].metadata[0].name
   }
 
   data = {
@@ -24,14 +24,14 @@ resource "helm_release" "helm_operator" {
 
   name      = "helm-operator"
   version   = var.helm_operator_chart_version
-  namespace = kubernetes_namespace.flux.0.metadata.0.name
+  namespace = kubernetes_namespace.flux[0].metadata[0].name
 
   chart      = "helm-operator"
   repository = "https://charts.fluxcd.io"
 
   set {
     name  = "git.ssh.secretName"
-    value = kubernetes_secret.flux_secret.0.metadata.0.name
+    value = kubernetes_secret.flux_secret[0].metadata[0].name
   }
 
   set {
@@ -50,7 +50,7 @@ resource "helm_release" "flux" {
 
   name      = "flux"
   version   = var.flux_chart_version
-  namespace = kubernetes_namespace.flux.0.metadata.0.name
+  namespace = kubernetes_namespace.flux[0].metadata[0].name
 
   chart      = "flux"
   repository = "https://charts.fluxcd.io"
@@ -67,7 +67,7 @@ resource "helm_release" "flux" {
 
   set {
     name  = "git.secretName"
-    value = kubernetes_secret.flux_secret.0.metadata.0.name
+    value = kubernetes_secret.flux_secret[0].metadata[0].name
   }
 
   set {
