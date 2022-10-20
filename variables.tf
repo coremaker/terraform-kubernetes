@@ -293,8 +293,8 @@ variable "ingressgateway_version" {
 
 variable "ingressgateway_values" {
   type = list(object({
-    name  = optional(any)
-    value = optional(any)
+    name  = any
+    value = any
   }))
   default     = []
   description = "Values to be set on the ingress gateway resource."
@@ -314,8 +314,8 @@ variable "egressgateway_version" {
 
 variable "egressgateway_values" {
   type = list(object({
-    name  = optional(any)
-    value = optional(any)
+    name  = any
+    value = any
   }))
   default     = []
   description = "Values to be set on the egress gateway resource."
