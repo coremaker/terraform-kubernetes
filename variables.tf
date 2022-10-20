@@ -1,10 +1,8 @@
 variable "k8s_namespaces" {
   type = list(object({
-    name          = string
-    has_public_ip = bool
-    dns_records   = set(string)
-    labels        = map(string)
-    annotations   = map(string)
+    name        = string
+    labels      = optional(map(string))
+    annotations = optional(map(string))
   }))
   description = "Namespaces to be created."
 }
@@ -298,10 +296,7 @@ variable "ingressgateway_values" {
     name  = any
     value = any
   }))
-  default = [{
-    name  = ""
-    value = ""
-  }]
+  default     = []
   description = "Values to be set on the ingress gateway resource."
 }
 
@@ -322,9 +317,6 @@ variable "egressgateway_values" {
     name  = any
     value = any
   }))
-  default = [{
-    name  = ""
-    value = ""
-  }]
+  default     = []
   description = "Values to be set on the egress gateway resource."
 }
