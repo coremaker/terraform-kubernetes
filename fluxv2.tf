@@ -116,6 +116,10 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
         "eu.gcr.io" = {
           username = "_json_key",
           password = var.fluxv2_gcr_service_key
+        },
+        "us-docker.pkg.dev" = {
+          username = "_json_key",
+          password = var.fluxv2_gcr_service_key
         }
       }
     })
