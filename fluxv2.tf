@@ -125,6 +125,6 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
     namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
   data = {
-    ".dockerconfigjson" = local.docker_cfg
+    ".dockerconfigjson" = base64encode(local.docker_cfg)
   }
 }
