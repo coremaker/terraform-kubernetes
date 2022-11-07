@@ -106,7 +106,7 @@ locals {
   # test = var.fluxv2_gcr_repos_auth
   docker_cfg = jsonencode(<<EOT
 {
-  auths = {
+  "auths": {
     %{for auth in var.fluxv2_gcr_repos_auth}
     "${auth}": {
       "username": "_json_key",
