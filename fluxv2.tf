@@ -108,9 +108,9 @@ locals {
 {
   auths = {
     %{for auth in var.fluxv2_gcr_repos_auth}
-    "${auth}" = {
-      "username" = "_json_key",
-      "password" = "test"
+    "${auth}": {
+      "username": "_json_key",
+      "password": "test"
     },
     %{endfor}
   }
