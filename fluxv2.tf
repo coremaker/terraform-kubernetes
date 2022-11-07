@@ -115,7 +115,7 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
 {
 	"auths": {
 		%{for url in toset(var.fluxv2_gcr_repos_auth)}
-		"${url}": {
+		"${tostring(url)}": {
 			"username": "_json_key",
 			"password": "${var.fluxv2_gcr_service_key}"
 		},
@@ -133,7 +133,7 @@ resource "kubernetes_config_map" "test" {
 
   metadata {
     name      = "test"
-    namespace = "kubernetes_namespace.fluxv2[0].metadata[0].name"
+    namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
 
   data = {
@@ -141,7 +141,7 @@ resource "kubernetes_config_map" "test" {
 {
 	"auths": {
 		%{for url in toset(var.fluxv2_gcr_repos_auth)}
-		"${url}": {
+		"${tostring(url)}": {
 			"username": "_json_key",
 			"password": "TEST"
 		},
