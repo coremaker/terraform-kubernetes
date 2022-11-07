@@ -130,10 +130,8 @@ variable "fluxv2_image_automation_push_branch" {
 }
 
 variable "fluxv2_gcr_repos_auth" {
-  type = map(string)
-  default = {
-    url = "eu.gcr.io"
-  }
+  type    = list(string)
+  default = ["eu.gcr.io"]
 }
 
 # FLUX
