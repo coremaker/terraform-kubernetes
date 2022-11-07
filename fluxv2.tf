@@ -104,18 +104,17 @@ resource "helm_release" "fluxv2" {
 locals {
 
   # test = var.fluxv2_gcr_repos_auth
-  docker_cfg = <<EOT
-{
-  "auths": {
-    %{for auth in var.fluxv2_gcr_repos_auth}
-    "${auth}": {
-      "username": "_json_key",
-      "password": "test"
-    },
-    %{endfor}
-  }
-}
-EOT
+
+  docker_cfg = [
+    for key in var.fluxv2_gcr_repos_auth : {
+      auths = {
+        "${key}" = {
+          username = "_json_key",
+          password = "test"
+        },
+      }
+    }
+  ]
 }
 
 resource "kubernetes_secret" "fluxv2_gcr_secret" {
