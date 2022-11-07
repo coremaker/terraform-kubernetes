@@ -40,7 +40,7 @@ variable "fluxv2_enabled" {
 }
 
 variable "fluxv2_gcr_service_key" {
-  type        = string
+  type        = any
   default     = ""
   description = "Service account key with the right permissions for GCR to be used by fluxv2."
 }
@@ -130,8 +130,10 @@ variable "fluxv2_image_automation_push_branch" {
 }
 
 variable "fluxv2_gcr_repos_auth" {
-  type    = list(string)
-  default = ["eu.gcr.io"]
+  type = map(string)
+  default = {
+    url = "eu.gcr.io"
+  }
 }
 
 # FLUX
