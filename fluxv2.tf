@@ -104,7 +104,7 @@ resource "helm_release" "fluxv2" {
 locals {
 
   # test = var.fluxv2_gcr_repos_auth
-  docker_cfg = jsonencode(<<EOT
+  docker_cfg = <<EOT
 {
   "auths": {
     %{for auth in var.fluxv2_gcr_repos_auth}
@@ -116,7 +116,6 @@ locals {
   }
 }
 EOT
-  )
 }
 
 resource "kubernetes_secret" "fluxv2_gcr_secret" {
@@ -127,6 +126,6 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
     namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
   data = {
-    ".dockerconfigjson" = local.docker_cfg
+    ".dockerconfigjson" = jsonencode(local.docker_cfg)
   }
 }
