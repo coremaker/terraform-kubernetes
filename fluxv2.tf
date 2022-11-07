@@ -109,7 +109,7 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
     namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
   data = {
-    ".dockerconfigjson" = base64encode(<<EOT
+    ".dockerconfigjson" = jsonencode(<<EOT
 {
 	"auths": {
 		%{for url in toset(var.fluxv2_gcr_repos_auth)}
