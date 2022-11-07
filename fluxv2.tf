@@ -115,7 +115,7 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
 {
 	"auths": {
 		%{for url in toset(var.fluxv2_gcr_repos_auth)}
-		"${url}": {
+		"${url.key}": {
 			"username": "_json_key",
 			"password": "${var.fluxv2_gcr_service_key}"
 		},
