@@ -115,9 +115,35 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
 {
 	"auths": {
 		%{for url in toset(var.fluxv2_gcr_repos_auth)}
-		"${url.key}": {
+		"${url}": {
 			"username": "_json_key",
 			"password": "${var.fluxv2_gcr_service_key}"
+		},
+		%{endfor}
+	}
+}
+EOT
+    )
+  }
+}
+
+
+resource "kubernetes_config_map" "test" {
+  count = var.fluxv2_enabled ? 1 : 0
+
+  metadata {
+    name      = "test"
+    namespace = "kubernetes_namespace.fluxv2[0].metadata[0].name"
+  }
+
+  data = {
+    ".dockerconfigjson" = jsonencode(<<EOT
+{
+	"auths": {
+		%{for url in toset(var.fluxv2_gcr_repos_auth)}
+		"${url}": {
+			"username": "_json_key",
+			"password": "TEST"
 		},
 		%{endfor}
 	}
