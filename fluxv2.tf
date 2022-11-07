@@ -103,20 +103,20 @@ resource "helm_release" "fluxv2" {
 
 locals {
 
-  test = var.fluxv2_gcr_repos_auth
-  docker_cfg = jsonencode({
-    auths = {
-      "eu.gcr.io" = {
-        username = "_json_key",
-        password = var.fluxv2_gcr_service_key
-      },
-      "us-docker.pkg.dev" = {
-        username = "_json_key",
-        password = var.fluxv2_gcr_service_key
-      }
-    }
-  })
-
+  # test = var.fluxv2_gcr_repos_auth
+  docker_cfg = jsonencode(<<EOT
+{
+  auths = {
+    %{for auth in var.fluxv2_gcr_repos_auth}
+    "${auth}" = {
+      "username" = "_json_key",
+      "password" = "test"
+    },
+    %{endfor}
+  }
+}
+EOT
+  )
 }
 
 resource "kubernetes_secret" "fluxv2_gcr_secret" {
