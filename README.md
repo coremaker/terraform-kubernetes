@@ -76,6 +76,7 @@ No modules.
 | <a name="input_flux_version"></a> [flux\_version](#input\_flux\_version) | Application version to deploy. | `string` | `"1.21.0"` | no |
 | <a name="input_fluxv2_chart"></a> [fluxv2\_chart](#input\_fluxv2\_chart) | Helm chart to be used to deploy fluxv2. | `string` | `"https://github.com/coremaker/helm-chart-fluxv2/releases/download/v0.0.9/fluxv2-0.0.9.tgz"` | no |
 | <a name="input_fluxv2_enabled"></a> [fluxv2\_enabled](#input\_fluxv2\_enabled) | Enable/Disable fluxv2 operator. | `bool` | `false` | no |
+| <a name="input_fluxv2_gcr_repos_auth"></a> [fluxv2\_gcr\_repos\_auth](#input\_fluxv2\_gcr\_repos\_auth) | n/a | `list(string)` | <pre>[<br>  "eu.gcr.io"<br>]</pre> | no |
 | <a name="input_fluxv2_gcr_service_key"></a> [fluxv2\_gcr\_service\_key](#input\_fluxv2\_gcr\_service\_key) | Service account key with the right permissions for GCR to be used by fluxv2. | `string` | `""` | no |
 | <a name="input_fluxv2_git_branch"></a> [fluxv2\_git\_branch](#input\_fluxv2\_git\_branch) | Github branch to be used. | `string` | `"main"` | no |
 | <a name="input_fluxv2_git_path"></a> [fluxv2\_git\_path](#input\_fluxv2\_git\_path) | Github repository path to be used. | `string` | `""` | no |

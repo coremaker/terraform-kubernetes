@@ -111,17 +111,18 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
   }
 
   data = {
-    ".dockerconfigjson" = jsonencode({
-      auths = {
-        "eu.gcr.io" = {
-          username = "_json_key",
-          password = var.fluxv2_gcr_service_key
-        },
-        "us-docker.pkg.dev" = {
-          username = "_json_key",
-          password = var.fluxv2_gcr_service_key
-        }
-      }
-    })
+    ".dockerconfigjson" = jsonencode(<<EOT
+{
+	"auths": {
+		%{for url in var.fluxv2_gcr_repos_auth}
+		"${url.value}": {
+			"username": "_json_key",
+			"password": "${var.fluxv2_gcr_service_key}"
+		},
+		%{endfor}
+	}
+}
+EOT
+    )
   }
 }

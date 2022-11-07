@@ -129,6 +129,11 @@ variable "fluxv2_image_automation_push_branch" {
   description = "Branch where to push new versions for deployments."
 }
 
+variable "fluxv2_gcr_repos_auth" {
+  type    = list(string)
+  default = ["eu.gcr.io"]
+}
+
 # FLUX
 variable "flux_enabled" {
   type        = bool
