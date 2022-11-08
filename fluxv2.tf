@@ -101,6 +101,18 @@ resource "helm_release" "fluxv2" {
   depends_on = [helm_release.fluxv2_controllers, kubernetes_secret.fluxv2_github_secret]
 }
 
+locals {
+
+  gcr_repos = <<EOF
+%{~for key in var.fluxv2_gcr_repos_auth}
+  "${key}" = {
+    username = "_json_key",
+    password = "${var.fluxv2_gcr_service_key}"
+  },
+%{~endfor~}
+EOF
+}
+
 resource "kubernetes_secret" "fluxv2_gcr_secret" {
   count = var.fluxv2_enabled ? 1 : 0
   type  = "kubernetes.io/dockerconfigjson"
@@ -110,18 +122,11 @@ resource "kubernetes_secret" "fluxv2_gcr_secret" {
   }
 
   data = {
-    ".dockerconfigjson" = base64encode(<<EOF
-{
-	"auths": {
-		%{~for auth in var.fluxv2_gcr_repos_auth~}
-		"${auth}": {
-			"username": "_json_key",
-			"password": "${var.fluxv2_gcr_service_key}"
-		},
-		%{~endfor~}
-	}
+    ".dockerconfigjson" = jsonencode({
+      auths = <<EOF
+{${local.gcr_repos}
 }
 EOF
-    )
+    })
   }
 }
