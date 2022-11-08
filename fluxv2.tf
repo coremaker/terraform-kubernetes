@@ -104,20 +104,12 @@ resource "helm_release" "fluxv2" {
 resource "kubernetes_secret" "fluxv2_gcr_secret" {
   count = var.fluxv2_enabled ? 1 : 0
   type  = "kubernetes.io/dockerconfigjson"
-
   metadata {
     name      = "fluxv2-gcr-credentials"
     namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
   }
 
   data = {
-    ".dockerconfigjson" = jsonencode({
-      auths = {
-        "eu.gcr.io" = {
-          username = "_json_key",
-          password = var.fluxv2_gcr_service_key
-        }
-      }
-    })
+    ".dockerconfigjson" = var.fluxv2_gcr_dockerconfig
   }
 }

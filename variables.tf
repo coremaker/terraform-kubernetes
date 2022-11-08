@@ -39,10 +39,18 @@ variable "fluxv2_enabled" {
   description = "Enable/Disable fluxv2 operator."
 }
 
-variable "fluxv2_gcr_service_key" {
-  type        = string
+# fluxv2_gcr_dockerconfig = jsonencode({
+#   auths = {
+#     "eu.gcr.io" = {
+#       username = "_json_key",
+#       password = "KEY"
+#     }
+#   }
+# })
+variable "fluxv2_gcr_dockerconfig" {
+  type        = any
   default     = ""
-  description = "Service account key with the right permissions for GCR to be used by fluxv2."
+  description = "Docker config json holding credentials to login on registry repositories."
 }
 
 variable "fluxv2_private_key_pem" {
