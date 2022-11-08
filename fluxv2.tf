@@ -106,7 +106,7 @@ locals {
 %{~for key in var.fluxv2_gcr_repos_auth~}
   "${key}" = {
     username = "_json_key",
-    password = "test"
+    password = "${var.fluxv2_gcr_service_key}"
   },
 %{~endfor~}
 EOF
