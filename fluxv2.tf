@@ -9,11 +9,49 @@ resource "kubernetes_namespace" "fluxv2" {
 resource "helm_release" "fluxv2_controllers" {
   count = var.fluxv2_enabled ? 1 : 0
 
-  name      = "fluxv2-controllers"
-  namespace = kubernetes_namespace.fluxv2[0].metadata[0].name
-  chart     = var.fluxv2_chart
+  name       = "flux2-controllers"
+  repository = var.fluxv2_chart
+  chart      = "flux2"
+  version    = var.fluxv2_chart_version
+  namespace  = kubernetes_namespace.fluxv2[0].metadata[0].name
 
-  depends_on = [kubernetes_namespace.fluxv2]
+  set {
+    name  = "helmController.create"
+    value = "true"
+  }
+
+  set {
+    name  = "imageAutomationController.create"
+    value = var.fluxv2_image_automation_controller_enabled
+  }
+
+  set {
+    name  = "kustomizeController.create"
+    value = "true"
+  }
+
+  set {
+    name  = "notificationController.create"
+    value = var.fluxv2_notification_controller_enabled
+  }
+
+  set {
+    name  = "sourceController.create"
+    value = "true"
+  }
+
+  set {
+    name  = "imageReflectionController.create"
+    value = var.fluxv2_image_reflection_controller_enabled
+  }
+
+  dynamic "set" {
+    for_each = var.fluxv2_controllers_values
+    content {
+      name  = set.value.name
+      value = set.value.value
+    }
+  }
 }
 
 resource "kubernetes_secret" "fluxv2_github_secret" {

@@ -67,10 +67,43 @@ variable "fluxv2_public_key_pem" {
 
 variable "fluxv2_chart" {
   type        = string
-  default     = "https://github.com/coremaker/helm-chart-fluxv2/releases/download/v0.0.9/fluxv2-0.0.9.tgz"
+  default     = "https://fluxcd-community.github.io/helm-charts"
   description = "Helm chart to be used to deploy fluxv2."
 }
 
+variable "fluxv2_chart_version" {
+  type        = string
+  default     = "2.6.0"
+  description = "Helm chart version to be used to deploy fluxv2."
+}
+
+variable "fluxv2_image_automation_controller_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable/Disable imageAutomationController controller."
+}
+
+variable "fluxv2_notification_controller_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable/Disable notificationController controller."
+}
+
+variable "fluxv2_image_reflection_controller_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable/Disable imageReflectionController controller."
+}
+
+variable "fluxv2_controllers_values" {
+  type = list(object({
+    name  = any
+    value = any
+  }))
+  default     = []
+  description = "Values to be set on the controllers."
+}
+# Flux2 resources
 variable "fluxv2_git_url" {
   type        = string
   default     = ""
