@@ -74,7 +74,9 @@ No modules.
 | <a name="input_flux_manifest_generation"></a> [flux\_manifest\_generation](#input\_flux\_manifest\_generation) | Enable/Disable manifests. | `bool` | `true` | no |
 | <a name="input_flux_private_key_pem"></a> [flux\_private\_key\_pem](#input\_flux\_private\_key\_pem) | Private key to be used for github integration. | `string` | `""` | no |
 | <a name="input_flux_version"></a> [flux\_version](#input\_flux\_version) | Application version to deploy. | `string` | `"1.21.0"` | no |
-| <a name="input_fluxv2_chart"></a> [fluxv2\_chart](#input\_fluxv2\_chart) | Helm chart to be used to deploy fluxv2. | `string` | `"https://github.com/coremaker/helm-chart-fluxv2/releases/download/v0.0.9/fluxv2-0.0.9.tgz"` | no |
+| <a name="input_fluxv2_chart"></a> [fluxv2\_chart](#input\_fluxv2\_chart) | Helm chart to be used to deploy fluxv2. | `string` | `"https://fluxcd-community.github.io/helm-charts"` | no |
+| <a name="input_fluxv2_chart_version"></a> [fluxv2\_chart\_version](#input\_fluxv2\_chart\_version) | Helm chart version to be used to deploy fluxv2. | `string` | `"2.6.0"` | no |
+| <a name="input_fluxv2_controllers_values"></a> [fluxv2\_controllers\_values](#input\_fluxv2\_controllers\_values) | Values to be set on the controllers. | <pre>list(object({<br>    name  = any<br>    value = any<br>  }))</pre> | `[]` | no |
 | <a name="input_fluxv2_enabled"></a> [fluxv2\_enabled](#input\_fluxv2\_enabled) | Enable/Disable fluxv2 operator. | `bool` | `false` | no |
 | <a name="input_fluxv2_gcr_dockerconfig"></a> [fluxv2\_gcr\_dockerconfig](#input\_fluxv2\_gcr\_dockerconfig) | Docker config json holding credentials to login on registry repositories. | `any` | `""` | no |
 | <a name="input_fluxv2_git_branch"></a> [fluxv2\_git\_branch](#input\_fluxv2\_git\_branch) | Github branch to be used. | `string` | `"main"` | no |
@@ -82,11 +84,14 @@ No modules.
 | <a name="input_fluxv2_git_repository_interval"></a> [fluxv2\_git\_repository\_interval](#input\_fluxv2\_git\_repository\_interval) | Fluxv2 gitrepository resource sync interval. | `string` | `"5m"` | no |
 | <a name="input_fluxv2_git_url"></a> [fluxv2\_git\_url](#input\_fluxv2\_git\_url) | Github SSH url to the repository holding kubernetes manifests. | `string` | `""` | no |
 | <a name="input_fluxv2_image_automation_checkout_branch"></a> [fluxv2\_image\_automation\_checkout\_branch](#input\_fluxv2\_image\_automation\_checkout\_branch) | Branch holding the versions to be used for deployments. | `string` | `"main"` | no |
+| <a name="input_fluxv2_image_automation_controller_enabled"></a> [fluxv2\_image\_automation\_controller\_enabled](#input\_fluxv2\_image\_automation\_controller\_enabled) | Enable/Disable imageAutomationController controller. | `bool` | `true` | no |
 | <a name="input_fluxv2_image_automation_interval"></a> [fluxv2\_image\_automation\_interval](#input\_fluxv2\_image\_automation\_interval) | Fluxv2 image automation resource sync interval. | `string` | `"5m"` | no |
 | <a name="input_fluxv2_image_automation_push_branch"></a> [fluxv2\_image\_automation\_push\_branch](#input\_fluxv2\_image\_automation\_push\_branch) | Branch where to push new versions for deployments. | `string` | `"main"` | no |
 | <a name="input_fluxv2_image_automation_suspend"></a> [fluxv2\_image\_automation\_suspend](#input\_fluxv2\_image\_automation\_suspend) | Suspend image automation resource. | `bool` | `false` | no |
+| <a name="input_fluxv2_image_reflection_controller_enabled"></a> [fluxv2\_image\_reflection\_controller\_enabled](#input\_fluxv2\_image\_reflection\_controller\_enabled) | Enable/Disable imageReflectionController controller. | `bool` | `true` | no |
 | <a name="input_fluxv2_kustomization_interval"></a> [fluxv2\_kustomization\_interval](#input\_fluxv2\_kustomization\_interval) | Fluxv2 kustomization resource sync interval. | `string` | `"5m"` | no |
 | <a name="input_fluxv2_kustomization_prune"></a> [fluxv2\_kustomization\_prune](#input\_fluxv2\_kustomization\_prune) | Enable/Disable prune for all resources. | `bool` | `true` | no |
+| <a name="input_fluxv2_notification_controller_enabled"></a> [fluxv2\_notification\_controller\_enabled](#input\_fluxv2\_notification\_controller\_enabled) | Enable/Disable notificationController controller. | `bool` | `false` | no |
 | <a name="input_fluxv2_private_key_pem"></a> [fluxv2\_private\_key\_pem](#input\_fluxv2\_private\_key\_pem) | Private key to be used for github integration. | `any` | `""` | no |
 | <a name="input_fluxv2_public_key_pem"></a> [fluxv2\_public\_key\_pem](#input\_fluxv2\_public\_key\_pem) | Public key to be used for github integration. | `any` | `""` | no |
 | <a name="input_fluxv2_resources_name"></a> [fluxv2\_resources\_name](#input\_fluxv2\_resources\_name) | The name of the main fluxv2 resources. | `string` | `"k8s-repo"` | no |
