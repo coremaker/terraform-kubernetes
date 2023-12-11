@@ -75,7 +75,7 @@ No modules.
 | <a name="input_flux_private_key_pem"></a> [flux\_private\_key\_pem](#input\_flux\_private\_key\_pem) | Private key to be used for github integration. | `string` | `""` | no |
 | <a name="input_flux_version"></a> [flux\_version](#input\_flux\_version) | Application version to deploy. | `string` | `"1.21.0"` | no |
 | <a name="input_fluxv2_chart"></a> [fluxv2\_chart](#input\_fluxv2\_chart) | Helm chart to be used to deploy fluxv2. | `string` | `"https://fluxcd-community.github.io/helm-charts"` | no |
-| <a name="input_fluxv2_chart_version"></a> [fluxv2\_chart\_version](#input\_fluxv2\_chart\_version) | Helm chart version to be used to deploy fluxv2. | `string` | `"2.6.0"` | no |
+| <a name="input_fluxv2_chart_version"></a> [fluxv2\_chart\_version](#input\_fluxv2\_chart\_version) | Helm chart version to be used to deploy fluxv2. | `string` | `"2.11.1"` | no |
 | <a name="input_fluxv2_controllers_values"></a> [fluxv2\_controllers\_values](#input\_fluxv2\_controllers\_values) | Values to be set on the controllers. | <pre>list(object({<br>    name  = any<br>    value = any<br>  }))</pre> | `[]` | no |
 | <a name="input_fluxv2_enabled"></a> [fluxv2\_enabled](#input\_fluxv2\_enabled) | Enable/Disable fluxv2 operator. | `bool` | `false` | no |
 | <a name="input_fluxv2_gcr_dockerconfig"></a> [fluxv2\_gcr\_dockerconfig](#input\_fluxv2\_gcr\_dockerconfig) | Docker config json holding credentials to login on registry repositories. | `any` | `""` | no |
