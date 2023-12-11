@@ -73,7 +73,7 @@ variable "fluxv2_chart" {
 
 variable "fluxv2_chart_version" {
   type        = string
-  default     = "2.6.0"
+  default     = "2.11.1"
   description = "Helm chart version to be used to deploy fluxv2."
 }
 
