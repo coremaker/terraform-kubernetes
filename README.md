@@ -104,10 +104,10 @@ No modules.
 | <a name="input_istio_gateways_namespace"></a> [istio\_gateways\_namespace](#input\_istio\_gateways\_namespace) | Namespace where to create the istio gateways. | `string` | `"istio-ingress"` | no |
 | <a name="input_k8s_namespaces"></a> [k8s\_namespaces](#input\_k8s\_namespaces) | Namespaces to be created. | <pre>list(object({<br>    name        = string<br>    labels      = optional(map(string))<br>    annotations = optional(map(string))<br>  }))</pre> | n/a | yes |
 | <a name="input_sealed_secrets_cert_pem"></a> [sealed\_secrets\_cert\_pem](#input\_sealed\_secrets\_cert\_pem) | Self-signed cert to be used for the encryption/decryption of secrets. | `string` | `""` | no |
-| <a name="input_sealed_secrets_chart_version"></a> [sealed\_secrets\_chart\_version](#input\_sealed\_secrets\_chart\_version) | Helm chart version to deploy. | `string` | `"1.0.8"` | no |
+| <a name="input_sealed_secrets_chart_version"></a> [sealed\_secrets\_chart\_version](#input\_sealed\_secrets\_chart\_version) | Helm chart version to deploy. | `string` | `"2.17.3"` | no |
 | <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Enable/Disable sealed-secrets operator. | `bool` | `true` | no |
 | <a name="input_sealed_secrets_private_key"></a> [sealed\_secrets\_private\_key](#input\_sealed\_secrets\_private\_key) | Private key used for the encryption of secrets. | `string` | `""` | no |
-| <a name="input_sealed_secrets_version"></a> [sealed\_secrets\_version](#input\_sealed\_secrets\_version) | Application version do deploy. | `string` | `"0.18.0"` | no |
+| <a name="input_sealed_secrets_version"></a> [sealed\_secrets\_version](#input\_sealed\_secrets\_version) | Application version do deploy. | `string` | `"0.30.0"` | no |
 
 ## Outputs
 
